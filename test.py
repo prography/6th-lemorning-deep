@@ -13,19 +13,7 @@ onepeace = top_tags(file_name3, model='MTT_musicnn', topN=3)
 print("onepeace", onepeace)
 
 
-# from musicnn.extractor import extractor
-# taggram, tags, features = extractor(file_name1, model='MTT_musicnn', extract_features=True)
-# print("===============tags - oringin=============================")
-# print(tags)
-# taggram, tags, features = extractor(file_name2, model='MTT_musicnn', extract_features=True)
-# print("===============tags - iruma=============================")
-# print(tags)
-# taggram, tags, features = extractor(file_name3, model='MTT_musicnn', extract_features=True)
-# print("===============tags - onepeace=============================")
-# print(tags)
-# print("===============tags=============================")
-# print(tags)
-# print("===============tags===========================")
-# print("taggram: ",type(taggram))
-# print("tags:    ",type(tags))
-# print("features:",type(features))
+#실행결과
+#origin ['techno', 'electronic', 'synth']
+#iruma ['piano', 'slow', 'classical']
+#onepeace ['drums', 'strings', 'violin']
