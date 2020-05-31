@@ -4,10 +4,6 @@
 
 ## musicnn 모델을 이용한 태그 값 추출 및 추천
 
-### musicnn
-https://github.com/jordipons/musicnn/tree/516acb2a0ff5ef73f64547898e018e793152c506
-
-
 ## installation
 
 ```
@@ -40,3 +36,5 @@ top_tags('./audio/joram-moments_of_clarity-08-solipsism-59-88.mp3')
 tag = ['ambient', 'beat', 'beats', 'cello', 'choir', 'choral', 'classic', 'classical', 'country', 'dance', 'drums', 'electronic', 'fast', 'female', 'female vocal', 'female voice', 'flute', 'guitar', 'harp', 'harpsichord', 'indian', 'loud', 'male', 'male vocal', 'male voice', 'man', 'metal', 'new age', 'no vocal', 'no vocals', 'no voice', 'opera', 'piano', 'pop', 'quiet', 'rock', 'singing', 'sitar', 'slow', 'soft', 'solo', 'strings', 'synth', 'techno', 'violin', 'vocal', 'vocals', 'voice', 'weird', 'woman']
 
 
+### musicnn 모델 정보
+https://github.com/jordipons/musicnn/tree/516acb2a0ff5ef73f64547898e018e793152c506
