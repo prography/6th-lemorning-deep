@@ -25,6 +25,7 @@ top_tags('./audio/joram-moments_of_clarity-08-solipsism-59-88.mp3')
 ```
 
 - return: list, 가장 유사도 높은 장르(카테고리= 태그) 3개 추출
+
 ['drums', 'strings', 'violin']
 
 
