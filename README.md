@@ -14,9 +14,9 @@ pip install -r requirements.txt
 
 ```
 .
-├── audio
-├── data
-├── musicnn
+├── audio/
+├── data/
+├── musicnn/
 ├── model_light.py
 ├── run_model_light.py
 └── test_similarity.py
