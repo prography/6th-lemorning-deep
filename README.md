@@ -14,37 +14,86 @@ pip install -r requirements.txt
 
 ```
 .
-├── audio/
 ├── data/
-├── musicnn/
-├── model_light.py
-├── run_model_light.py
+├── deep/
+├── search_engine/
+├── test_deep_model.py
+├── test_search_engine.py
 └── test_similarity.py
 
 ```
 
-- audio/ : 샘플 오디오 저장
-- data/ : similarity test를 위한 미리 계산된 오디오 features, labels
-- musicnn/ : musicnn에 관련된 코드
-- model_light.py : 경량화된 musicnn 코드
-- run_model_light.py: 태그를 추출하는 샘플 코드
+- data/ : 샘플 오디오나 미리 계산된 features 정보 저장
+- deep/ : 오디오 데이터에서 tag나 feature을 추출하는 모델 저장
+- search_engine/ : Milvus를 접근하기 위한 코드 저장
+- test_deep_model.py : 오디오 데이터 추출하는 모델 사용 샘플 코드
+- test_search_engine.py: Milvus 검색 엔진 사용 샘플 코드
 - test_similarity.py: 유사도 계산하는 샘플 코드
 
 ## How to use
 
-- features, tags 추출
+1. features, tags 추출
 
 ```
-import model_light import Model
+from deep.model import DeepModel
 
 model = Model()
 
-path_audio = 'test1.mp3'
+path_audio = 'test.mp3'
 
-features, tags = model.extract_features_and_tags(path_aduio)
+# 1. get info (features, tags)
+feats, tags = model.extract_info(path_audio, mode='both', topN=5)
 
-print(features) # audio를 나타내는 features 추출
-print(tags)     # audio의 Tag 추출
+# 2. get info (features)
+feats = model.extract_info(path_audio, mode='feature')
+
+# 3. get info (tags)
+tags = model.extract_info(path_audio, mode='tag', topN=5)
+```
+
+2. milvus 검색 엔진 사용
+```
+from search_engine.milvusdb import SearchEngine
+
+# 1. set engine
+engine = SearchEngine('localhost', 19530)
+
+##############################
+# Collection
+##############################
+# 2-1. create collection 
+engine.create_engine('musicDB', 753)
+
+# 2-2. show info of collection 
+engine.get_collection_stats()
+
+# 2-3. delete collection
+engine.drop_collection('musicDB')
+
+##############################
+# CRUD Data
+##############################
+feature = model.extract_info(path_audio, mode='feature')
+feature_new = model.extract_info(path_new_audio, mode='feature')
+
+engine.create_engine('musicDB', 753)
+engine.set_collection('musicDB')
+
+# 3-1. insert data
+engine.insert_data(0, feature)
+
+# 3-3. update data
+engine.update_data(0, feature_new)
+
+##############################
+# Search Data
+##############################
+
+# 4-1. search data by feature
+li_id, li_distance = engine.search_by_feature(feature, 5)
+
+# 4-2. search data by key
+li_id, li_distance = engine.search_by_key(0, 5)    
 ```
 
 ## Note
