@@ -63,7 +63,8 @@ class DeepModel():
         feats = np.mean(feats, 0)
 
         if mode == 'feature':
-            return feats
+            mag = np.sqrt(np.sum(feat ** 2))
+            return feats / mag
 
         tags_likelihood_mean = np.mean(ys, axis=0)
         sort_idx = tags_likelihood_mean.argsort()[::-1]
