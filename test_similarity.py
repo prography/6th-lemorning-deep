@@ -1,8 +1,8 @@
 import numpy as np
 
 if __name__ == '__main__':
-    feat = np.load('./data/feats.npy')
-    feat_label = np.load('./data/labels.npy')
+    feat = np.load('data/feature/feats.npy')
+    feat_label = np.load('data/feature/labels.npy')
 
     mag = np.sqrt(np.sum(feat ** 2, 1)).reshape(-1, 1)
     mat_mag = mag @ mag.T
