@@ -28,4 +28,3 @@ if __name__ == '__main__':
     print('3. Extact tags')
     tags = model.extract_info(path_audio, mode='tag', topN=5)
     print(tags)
-    print()
