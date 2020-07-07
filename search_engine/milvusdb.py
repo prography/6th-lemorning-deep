@@ -5,8 +5,8 @@ from milvus import Milvus, IndexType, MetricType, Status
 
 class SearchEngine:
     def __init__(self, host, port):
-        self.host = host
-        self.port = str(port)
+        self.host = os.environ.get('MILVUS_HOST',host)
+        self.port = os.environ.get('MILVUS_PORT', str(port))
         self.engine = Milvus(host=self.host, port=self.port)
         self.collection_name = None
 
