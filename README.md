@@ -82,6 +82,9 @@ engine.set_collection('musicDB')
 # 3-1. insert data
 engine.insert_data(0, feature)
 
+# 3-2. delete data
+engine.delete_data(0)
+
 # 3-3. update data
 engine.update_data(0, feature_new)
 
