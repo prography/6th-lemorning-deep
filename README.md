@@ -96,6 +96,9 @@ li_id, li_distance = engine.search_by_feature(feature, 5)
 li_id, li_distance = engine.search_by_key(0, 5)    
 ```
 
+## Environment
+![environment](./data/img/img.png)
+
 ## Note
 
 1. 빠른 오디오 로드를 위해서 음원의 6초가량의 첫부분만 사용.
