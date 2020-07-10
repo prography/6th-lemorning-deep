@@ -7,7 +7,7 @@ from deep.model import DeepModel
 
 if __name__ == '__main__':
     model = DeepModel()
-    path_audio = 'data/audio/TRWJAZW128F42760DD_test.mp3'
+    path_audio = 'data/audio/test/trap_card.mp3'
 
     # 1. get info (features, tags)
     print('1. Extract info(feat, tag)')
