@@ -66,7 +66,7 @@ engine = SearchEngine('localhost', 19530)
 engine.create_collection('musicDB', 753)
 
 # 2-2. show info of collection
-engine.get_collection_stats()
+engine.get_collection_stats('musicDB')
 
 # 2-3. delete collection
 engine.drop_collection('musicDB')
