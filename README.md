@@ -52,6 +52,7 @@ tags = model.extract_info(path_audio, mode='tag', topN=5)
 ```
 
 2. milvus 검색 엔진 사용
+
 ```
 from search_engine.milvusdb import SearchEngine
 
@@ -61,10 +62,10 @@ engine = SearchEngine('localhost', 19530)
 ##############################
 # Collection
 ##############################
-# 2-1. create collection 
-engine.create_engine('musicDB', 753)
+# 2-1. create collection
+engine.create_collection('musicDB', 753)
 
-# 2-2. show info of collection 
+# 2-2. show info of collection
 engine.get_collection_stats()
 
 # 2-3. delete collection
@@ -96,10 +97,11 @@ engine.update_data(0, feature_new)
 li_id, li_distance = engine.search_by_feature(feature, 5)
 
 # 4-2. search data by key
-li_id, li_distance = engine.search_by_key(0, 5)    
+li_id, li_distance = engine.search_by_key(0, 5)
 ```
 
 ## Environment
+
 ![environment](./data/img/img.png)
 
 ## Note
