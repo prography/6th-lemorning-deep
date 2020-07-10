@@ -6,11 +6,13 @@ from search_engine.milvusdb import SearchEngine
 if __name__ == '__main__':
     model = DeepModel()
     path_root = 'data/audio/test/'
-    path_audios = [os.path.join(path_root, file) for file in os.listdir(path_root)]
+    path_audios = [os.path.join(path_root, file)
+                   for file in os.listdir(path_root)]
     path_new_audio = 'data/audio/joram-moments_of_clarity-08-solipsism-59-88.mp3'
 
-    HOST = 'localhost'
-    PORT = 19530
+    HOST = os.environ.get('HOST_SEARCH_ENGINE', 'localhost')
+    PORT = os.environ.get('PORT_SEARCH_ENGINE', 19530)
+    N_DIM_FEATURE = os.environ.get('N_DIM_FEATURE', 753)
 
     # 1. set engine
     engine = SearchEngine(HOST, PORT)
@@ -18,10 +20,10 @@ if __name__ == '__main__':
     ##############################
     # Collection
     ##############################
-    # 2-1. create collection 
-    engine.create_engine('musicDB', 753)
+    # 2-1. create collection
+    engine.create_engine('musicDB', N_DIM_FEATURE)
 
-    # 2-2. show info of collection 
+    # 2-2. show info of collection
     engine.get_collection_stats()
 
     # 2-3. delete collection
@@ -30,7 +32,7 @@ if __name__ == '__main__':
     ##############################
     # CRUD Data
     ##############################
-    engine.create_engine('musicDB', 753)
+    engine.create_engine('musicDB', N_DIM_FEATURE)
     engine.set_collection('musicDB')
 
     # 3-1. insert data
@@ -51,14 +53,13 @@ if __name__ == '__main__':
     ##############################
     # Search Data
     ##############################
-    
+
     # 4-1. search data by feature
     li_id, li_distance = engine.search_by_feature(feature, 5)
     result = [(idx, dis) for idx, dis in zip(li_id, li_distance)]
     print(result)
 
     # 4-2. search data by key
-    li_id, li_distance = engine.search_by_key(len(path_audio) - 1, 5)    
+    li_id, li_distance = engine.search_by_key(len(path_audio) - 1, 5)
     result = [(idx, dis) for idx, dis in zip(li_id, li_distance)]
     print(result)
-
