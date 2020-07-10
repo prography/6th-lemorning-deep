@@ -37,7 +37,7 @@ pip install -r requirements.txt
 ```
 from deep.model import DeepModel
 
-model = Model()
+model = DeepModel()
 
 path_audio = 'test.mp3'
 
