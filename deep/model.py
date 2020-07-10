@@ -1,17 +1,15 @@
+import warnings
+from .musicnn import models
+from .musicnn import configuration as config
+import tensorflow as tf
+import numpy as np
+import librosa
+import time
+import os
 import sys
 sys.path.append('deep')
 
-import os
-import time
 
-import librosa
-import numpy as np
-import tensorflow as tf
-
-from musicnn import configuration as config
-from musicnn import models
-
-import warnings
 warnings.filterwarnings('ignore')
 
 
@@ -35,7 +33,7 @@ class DeepModel():
             self.x = tf.compat.v1.placeholder(
                 tf.float32, [None, self.n_frames, config.N_MELS])
             self.is_training = tf.compat.v1.placeholder(tf.bool)
-            y, _, _, _, _, _, self.mean_pool, _, _ = models.define_model(
+            y, _, _, _, _, _, _, _, self.feature = models.define_model(
                 self.x, self.is_training, 'MTT_musicnn', num_classes)
             self.normalized_y = tf.nn.sigmoid(y)
 
@@ -51,7 +49,7 @@ class DeepModel():
         feats = []
         ys = []
         for i in range(batch.shape[0]):
-            feat, y = self.sess.run([self.mean_pool, self.normalized_y], feed_dict={
+            feat, y = self.sess.run([self.feature, self.normalized_y], feed_dict={
                                     self.x: batch[i:i+1], self.is_training: False})
             feats.append(feat)
             ys.append(y)
