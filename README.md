@@ -32,7 +32,7 @@ pip install -r requirements.txt
 
 ## How to use
 
-1. features, tags 추출
+*1-1. features, tags 추출*
 
 ```
 from deep.model import DeepModel
@@ -50,6 +50,9 @@ feats = model.extract_info(path_audio, mode='feature')
 # 3. get info (tags)
 tags = model.extract_info(path_audio, mode='tag', topN=5)
 ```
+
+*1-2. Request에서 features, tags 추출*
+
 ```
 import io
 from django.views import View
@@ -66,7 +69,7 @@ class Tag(View):
             feat, tag = model.extract_info(data)
 ```
 
-2. milvus 검색 엔진 사용
+*2. milvus 검색 엔진 사용*
 
 ```
 from search_engine.milvusdb import SearchEngine
