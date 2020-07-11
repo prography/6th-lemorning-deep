@@ -50,6 +50,21 @@ feats = model.extract_info(path_audio, mode='feature')
 # 3. get info (tags)
 tags = model.extract_info(path_audio, mode='tag', topN=5)
 ```
+```
+import io
+from django.views import View
+
+from deep.model import DeepModel
+
+# 1. Django View Example
+class Tag(View):
+    def post(self, request):
+        if request.FILES.get('file', ''):
+            data = io.BytesIO(request.FILES['file'].file.read())
+
+            model = DeepModel()
+            feat, tag = model.extract_info(data)
+```
 
 2. milvus 검색 엔진 사용
 
