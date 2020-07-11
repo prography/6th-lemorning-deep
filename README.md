@@ -4,6 +4,22 @@
 
 ## Install
 
+- ffmpeg 설치
+
+ubuntu
+```
+sudo apt-get update
+sudo apt-get install ffmpeg
+```
+
+mac 
+```
+brew update
+brew install ffmpeg
+```
+
+window는 아래 사이트 참고 : https://m.blog.naver.com/chandong83/221165275268
+
 - python dependencies 설치
 
 ```
