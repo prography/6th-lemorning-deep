@@ -4,11 +4,13 @@ from .musicnn import configuration as config
 import tensorflow as tf
 import numpy as np
 import librosa
+from pydub import AudioSegment
 import time
 import os
 import sys
-sys.path.append('deep')
+from io import BytesIO
 
+sys.path.append('deep')
 
 warnings.filterwarnings('ignore')
 
@@ -42,9 +44,35 @@ class DeepModel():
         saver = tf.compat.v1.train.Saver()
         saver.restore(self.sess, self.path_model)
 
+    def load_audio_rep(self, audio_file, format='mp3'):
+
+        if isinstance(audio_file, BytesIO):
+            assert format == 'wav' or format == 'mp3', '[ERROR] format를 잘못 입력했습니다. 오직 wav, mp3만 가능합니다.'
+
+            audioSegment = AudioSegment.from_file(audio_file, format=format)
+            audioSegment = audioSegment.set_channels(1).set_frame_rate(config.SR)
+            audio = audioSegment.get_array_of_samples()
+            audio = np.array(audio) / (2 ** 15)
+        
+        if isinstance(audio_file, str):
+            assert audio_file.endswith('wav') or audio_file.endswith('mp3'), '[ERROR] wav 혹은 mp3 파일만 가능합니다.'
+            audio, sr = librosa.load(audio_file, sr=config.SR, duration=self.duration_load_audio)
+
+        audio_rep = librosa.feature.melspectrogram(y=audio,
+                                                   sr=config.SR,
+                                                   hop_length=config.FFT_HOP,
+                                                   n_fft=config.FFT_SIZE,
+                                                   n_mels=config.N_MELS).T
+        audio_rep = audio_rep.astype(np.float16)
+        audio_rep = np.log10(10000 * audio_rep + 1)
+
+        return audio_rep
+
     def extract_info(self, audio_file, mode="both", topN=5):
 
-        batch = self.batch_data(audio_file)
+        audio_rep = self.load_audio_rep(audio_file)
+
+        batch = self.batch_data(audio_rep)
 
         feats = []
         ys = []
@@ -75,18 +103,7 @@ class DeepModel():
         if mode == 'both':
             return feats, tags
 
-    def batch_data(self, audio_file):
-
-        audio, sr = librosa.load(
-            audio_file, sr=config.SR, duration=self.duration_load_audio)
-
-        audio_rep = librosa.feature.melspectrogram(y=audio,
-                                                   sr=sr,
-                                                   hop_length=config.FFT_HOP,
-                                                   n_fft=config.FFT_SIZE,
-                                                   n_mels=config.N_MELS).T
-        audio_rep = audio_rep.astype(np.float16)
-        audio_rep = np.log10(10000 * audio_rep + 1)
+    def batch_data(self, audio_rep):
 
         # batch it for an efficient computing
         first = True
