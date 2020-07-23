@@ -62,6 +62,8 @@ class SearchEngine:
         _, vector = self.engine.get_entity_by_id(
             collection_name=self.collection_name, ids=key)
 
+        vector = vector if vector else [vector] 
+
         return True if vector[0] else False
 
     def convert_key_format(self, key):
