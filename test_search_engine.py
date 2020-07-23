@@ -12,7 +12,7 @@ if __name__ == '__main__':
 
     HOST = os.environ.get('HOST_SEARCH_ENGINE', '3.15.42.143')
     PORT = os.environ.get('PORT_SEARCH_ENGINE', 19530)
-    N_DIM_FEATURE = os.environ.get('N_DIM_FEATURE', 753)
+    N_DIM_FEATURE = os.environ.get('N_DIM_FEATURE', 200s)
 
     # 1. set engine
     engine = SearchEngine(HOST, PORT)
@@ -42,25 +42,25 @@ if __name__ == '__main__':
     engine.get_collection_stats('musicDB')
 
     # 3-3. update data
-    #feature = model.extract_info(path_new_audio, mode='feature')
-    #engine.update_data(len(path_audios) - 1, feature)
-    #engine.get_collection_stats('musicDB')
+    feature = model.extract_info(path_new_audio, mode='feature')
+    engine.update_data(len(path_audios) - 1, feature)
+    engine.get_collection_stats('musicDB')
 
     # # 3-3. update data
-    #engine.delete_data(len(path_audios) - 1)
-    #engine.get_collection_stats('musicDB')
+    engine.delete_data(len(path_audios) - 1)
+    engine.get_collection_stats('musicDB')
 
     # ##############################
     # # Search Data
     # ##############################
 
     # # 4-1. search data by feature
-    #feature = model.extract_info(path_new_audio, mode='feature')
-    #li_id, li_distance = engine.search_by_feature(feature, 5)
-    #result = [(idx, dis) for idx, dis in zip(li_id, li_distance)]
-    #print(result)
+    feature = model.extract_info(path_new_audio, mode='feature')
+    li_id, li_distance = engine.search_by_feature(feature, 5)
+    result = [(idx, dis) for idx, dis in zip(li_id, li_distance)]
+    print(result)
 
     # 4-2. search data by key
-    #li_id, li_distance = engine.search_by_key(len(path_audios) - 2, 5)
-    #result = [(idx, dis) for idx, dis in zip(li_id, li_distance)]
-    #print(result)
+    li_id, li_distance = engine.search_by_key(len(path_audios) - 2, 5)
+    result = [(idx, dis) for idx, dis in zip(li_id, li_distance)]
+    print(result)
