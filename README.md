@@ -111,7 +111,7 @@ engine.drop_collection('musicDB')
 feature = model.extract_info(path_audio, mode='feature')
 feature_new = model.extract_info(path_new_audio, mode='feature')
 
-engine.create_engine('musicDB', 753)
+engine.create_collection('musicDB', 200)
 engine.set_collection('musicDB')
 
 # 3-1. insert data
