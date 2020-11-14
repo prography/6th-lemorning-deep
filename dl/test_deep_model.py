@@ -1,9 +1,6 @@
-import os
 import time
 
-import numpy as np
-
-from deep.model import DeepModel
+from dl.deep.model import DeepModel
 
 if __name__ == '__main__':
     model = DeepModel()

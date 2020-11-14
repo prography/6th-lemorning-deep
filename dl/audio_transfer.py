@@ -15,8 +15,8 @@ def getstatusoutput(cmd):
     return status, data
 
 if __name__ == '__main__':
-    outputdir = os.path.abspath("/Users/jooyoungson/6th-lemorning-deep/wav_output")
-    for root, dirs, files in os.walk("./data/audio/m4a/"):
+    outputdir = os.path.abspath("/dl/wav_output")
+    for root, dirs, files in os.walk("data/audio/m4a/"):
         for f in files:
             path = os.path.join(root, f)
             base, ext = os.path.splitext(f)

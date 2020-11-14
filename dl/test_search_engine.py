@@ -1,14 +1,14 @@
 import os
 
-from deep.model import DeepModel
-from search_engine.milvusdb import SearchEngine
+from dl.deep.model import DeepModel
+from dl.search_engine.milvusdb import SearchEngine
 
 if __name__ == '__main__':
     model = DeepModel()
     path_root = 'data/audio/test/'
     path_audios = [os.path.join(path_root, file)
                    for file in os.listdir(path_root)]
-    path_new_audio = 'data/audio/joram-moments_of_clarity-08-solipsism-59-88.mp3'
+    path_new_audio = 'dl/data/audio/joram-moments_of_clarity-08-solipsism-59-88.mp3'
 
     HOST = os.environ.get('HOST_SEARCH_ENGINE', '3.15.42.143')
     PORT = os.environ.get('PORT_SEARCH_ENGINE', 19530)
