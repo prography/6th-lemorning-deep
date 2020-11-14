@@ -1,3 +1,4 @@
+```
 |-api 
     |-flaskapp/
         |-templates/ 
@@ -17,5 +18,5 @@
     |-requirements.txt
     |-config.py 
     |-manage.py
-
+```
     
