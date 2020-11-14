@@ -37,19 +37,42 @@ images = UploadSet('images', IMAGES)
 configure_uploads(app, images)
 
 
-class MyForm(FlaskForm):
-    image = FileField('image')
 
+# class MyForm(FlaskForm):
+#     image = FileField('image')
+#
+#
+# @app.route('/', methods=['GET', 'POST'])
+# def index():
+#     form = MyForm()
+#
+#     if form.validate_on_submit():
+#         filename = images.save(form.image.data)
+#         return f'Filename: {filename}'
+#
+#     return render_template('p_media.html', form=form)
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    form = MyForm()
+####################################################
+from flask_uploads import AUDIO
+
+app.config['UPLOADED_AUDIOS_DEST'] = 'uploads/audios'
+audios = UploadSet('audios', AUDIO)
+configure_uploads(app, audios)
+
+class AudioForm(FlaskForm):
+    audio = FileField('audio')
+
+@app.route('/audio', methods=['GET','POST'])
+def audio():
+    form = AudioForm()
 
     if form.validate_on_submit():
-        filename = images.save(form.image.data)
-        return f'Filename: {filename}'
+        audios.save(form.audio.raw_data)
+#        filename = audios.save(form.audio.data)
+        return 'uploaded?'
 
-    return render_template('p_media.html', form=form)
+    return render_template('submit.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
