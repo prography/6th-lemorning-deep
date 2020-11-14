@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <form method="post" enctype="multipart/form-data">
+        <input id="music" name="FileName" type="file" placeholder="upload your file">
+        <select name="파일종류">
+            <option value="m4a">m4a</option>
+            <option value="m4p">m4p</option>
+            <option value="mp3">mp3</option>
+            <option value="wav">wav</option>
+        </select>
+        <input id="submit" type="submit">
+    </form>
+{% endblock %}
