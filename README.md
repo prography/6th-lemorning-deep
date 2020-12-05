@@ -3,6 +3,6 @@
 ## 폴더 구조
 ```
 /dl: 딥러닝 모델
-/api: Flask API서버
-/rendering: Rending페이지
+/Flask: Flask API서버
+/Django: Django API서버
 ```
