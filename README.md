@@ -2,7 +2,7 @@
 
 ## 폴더 구조
 ```
-/dl: 딥러닝 모델
-/Flask: Flask API서버
-/Django: Django API서버
+/deeplearning: 딥러닝 모델
+/flask: flask 연습
+/flask-server: flask, deeplearning 구현 (rending page)
 ```
