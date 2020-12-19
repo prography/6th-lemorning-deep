@@ -17,7 +17,7 @@
 
 
 ## code
-app.py
+flask/app.py
 ```
 
 from flask import Flask, redirect, render_template, request, url_for, flash
