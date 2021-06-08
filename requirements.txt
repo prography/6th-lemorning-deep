@@ -44,7 +44,7 @@ Markdown==3.2.2
 MarkupSafe==1.1.1
 numba==0.47.0
 numpy==1.18.5
-Pillow==8.0.1
+Pillow==8.2.0
 protobuf==3.12.2
 pycparser==2.20
 pydub==0.24.1
