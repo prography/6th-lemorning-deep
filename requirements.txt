@@ -61,7 +61,7 @@ SoundFile==0.10.3.post1
 SQLAlchemy==1.3.20
 sqlparse==0.4.1
 tensorboard==1.14.0
-tensorflow==1.14.0
+tensorflow==2.5.3
 tensorflow-estimator==1.14.0
 termcolor==1.1.0
 ujson==3.0.0
